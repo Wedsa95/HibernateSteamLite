@@ -1,16 +1,17 @@
 package com.jonas.olsson.controler;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.jonas.olsson.view.View;
+
+import javafx.application.Application;
 
 public class SteamLiteMain {
 	
 	public static void main(String [] args) {
-	
+		
+		Application.launch(View.class,args);
+		/*
 		try {
-			Desktop.getDesktop().browse(new URI("steam://runsafe/666"));
+			Desktop.getDesktop().browse(new URI("steam://runsafe/420"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -18,6 +19,8 @@ public class SteamLiteMain {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		*/
 	}
+
 }
+	

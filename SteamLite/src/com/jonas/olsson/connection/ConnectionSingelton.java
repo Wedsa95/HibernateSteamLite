@@ -1,5 +1,8 @@
 package com.jonas.olsson.connection;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import com.jonas.olsson.entity.Achievment;
 import com.jonas.olsson.entity.Category;
 import com.jonas.olsson.entity.Game;
@@ -17,7 +20,7 @@ public class ConnectionSingelton {
 		this.sessionFactory = buildSessionFactory();
 	}
 
-	private ConnectionSingelton buildSessionFactory() {
+	private SessionFactory buildSessionFactory() {
 		return new Configuration().configure()
 				.addAnnotatedClass(User.class)
 				.addAnnotatedClass(Game.class)

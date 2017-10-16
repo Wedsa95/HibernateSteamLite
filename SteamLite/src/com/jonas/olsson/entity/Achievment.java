@@ -1,5 +1,8 @@
 package com.jonas.olsson.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 public class Achievment {
 
 	@Id
