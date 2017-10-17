@@ -9,28 +9,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
-@Table(name="ratings")
-public class Rating implements Serializable{
+@Table(name="user_have_achiev")
+public class AchievState implements Serializable{
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7357723153107822181L;
+	private static final long serialVersionUID = -1127893160374144540L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="rating_id")
-	private int ratingId;
+	@Column(name="user_have_achiev")
+	private int id;
 	
-	@Column(name="user_id")
-	private User critic;
+	@Column(name="user_have")
+	private User user;
 	
-	@Column(name="game_id")
-	private Game subject;
+	@Column(name="have_achiev")
+	private Achievment achiev;
 	
-	@Column(name="rating_value")
-	private byte ratingValue;
-	
-	public Rating() {
-	}
+	@Column(name="achiev_unlock")
+	private boolean achievUnlocked;
 }

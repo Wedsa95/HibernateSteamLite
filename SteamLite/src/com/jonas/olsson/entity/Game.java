@@ -1,19 +1,32 @@
 package com.jonas.olsson.entity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-
-public class Game {
+import javax.persistence.Table;
+@Entity
+@Table(name="games")
+public class Game implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5958958094046147635L;
+
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="game_id")
 	private int gameId;
 	
@@ -47,5 +60,10 @@ public class Game {
 	private Game() {
 		
 	}
-	 
+	public void addCategoryToGames(Category category) {
+		if(categories == null) {
+			categories = new ArrayList<>();
+		}
+		categories.add(category);
+	}
 }

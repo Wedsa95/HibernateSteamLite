@@ -14,3 +14,9 @@
 	-fx-background-color: #585858;
 	-fx-text-fill: #989898;
 }
+.button:hover{
+	-fx-text-fill: #383838;
+}
+.button:pressed{
+	
+}
