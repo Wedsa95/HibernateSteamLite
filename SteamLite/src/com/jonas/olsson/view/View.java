@@ -11,7 +11,7 @@ public class View extends Application{
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("Steamliterule.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("SteamLibrary.fxml"));
 		primaryStage.setTitle("Steam Lite");
 		/*
 		GridPane pane = new GridPane();
@@ -19,7 +19,7 @@ public class View extends Application{
 		System.out.println("in start");
 		*/
 		
-		Scene scene = new Scene(root, 400, 400);
+		Scene scene = new Scene(root, 1200, 800);
 		scene.getStylesheets().add("com//jonas//olsson//view//steamlitestyle.css");
 		primaryStage.setScene(scene);
 		primaryStage.show();

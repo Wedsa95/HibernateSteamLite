@@ -3,7 +3,6 @@ package com.jonas.olsson.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,9 +15,6 @@ import javax.persistence.Table;
 @Table(name="users")
 public class User implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6044766768034805748L;
 
 	@Id
@@ -35,19 +31,24 @@ public class User implements Serializable {
 	@Column(name="user_password")
 	private String userPassword;
 	
-	@Column(name="library_have")
-	@OneToOne()
+	@OneToOne(mappedBy = "libraryOwner")
 	private Library library;
 	
-	@Column(name="user_have")
-	private List<Achievment> achievments;
+	@OneToMany(mappedBy="userState")
+	private List<AchievStatus> achievStatuses;
 	
-	@OneToMany(mappedBy="critic", cascade= 
-			{CascadeType.PERSIST, CascadeType.MERGE
-			,CascadeType.DETACH, CascadeType.REFRESH})
+	@OneToMany(mappedBy="ratingCritic")
 	private List<Rating> ratings;
 	
 	public User() {
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this) {
+			return true;
+		}
+		return false;
 	}
 	
 	

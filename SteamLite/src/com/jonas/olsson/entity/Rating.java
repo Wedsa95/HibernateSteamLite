@@ -7,14 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="ratings")
 public class Rating implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7357723153107822181L;
 
 	@Id
@@ -22,15 +21,26 @@ public class Rating implements Serializable{
 	@Column(name="rating_id")
 	private int ratingId;
 	
-	@Column(name="user_id")
-	private User critic;
+	@ManyToOne
+	@JoinColumn(name = "critic") 
+	private User ratingCritic;
 	
-	@Column(name="game_id")
-	private Game subject;
+	@ManyToOne
+	@JoinColumn(name = "subject") 
+	private Game ratingSubject;
 	
-	@Column(name="rating_value")
+	@Column(name = "rating_value")
 	private byte ratingValue;
 	
 	public Rating() {
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this) {
+			return true;
+		}
+		return false;
+	}
+	
 }

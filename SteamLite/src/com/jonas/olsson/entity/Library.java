@@ -4,21 +4,20 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="libraries")
 public class Library implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -2911423518982507442L;
 
 	@Id
@@ -26,17 +25,28 @@ public class Library implements Serializable {
 	@Column(name="library_id")
 	private int libraryId;
 	
-	@Column(name="user_id")
-	private int owner;
 	
-	@OneToMany(mappedBy="have_games", cascade= 
-			{CascadeType.PERSIST, CascadeType.MERGE
-			,CascadeType.DETACH, CascadeType.REFRESH})
+	@OneToOne
+	@JoinColumn(name="owner")
+	private int libraryOwner;
+	
+	@OneToMany
+	@JoinTable(name="library_have_games",
+			joinColumns=@JoinColumn(name="library_have"),
+			inverseJoinColumns=@JoinColumn(name="have_game"))
 	private List<Game> games;
 	
 	public Library() {
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this) {
+			return true;
+		}
+		return false;
+	}
+
 	public void addGameToLibrary(Game game) {
 		if(games == null) {
 			games = new ArrayList<>();

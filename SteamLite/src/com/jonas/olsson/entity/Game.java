@@ -4,25 +4,21 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="games")
 public class Game implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5958958094046147635L;
 
 	@Id
@@ -36,30 +32,37 @@ public class Game implements Serializable {
 	@Column(name="game_app_id")
 	private int gameAppId;
 	
+	@ManyToOne
+	@JoinTable(name="library_have_games",
+		joinColumns=@JoinColumn(name="have_game"),
+		inverseJoinColumns=@JoinColumn(name="library_have"))
+	private Library belongsTo;
 	
-	@OneToMany(mappedBy="subject", cascade= 
-		{CascadeType.PERSIST, CascadeType.MERGE
-		,CascadeType.DETACH, CascadeType.REFRESH})
+	@OneToMany(mappedBy="ratingSubject")
 	private List<Rating> rating;
 	
-	
-	@ManyToMany(fetch=FetchType.LAZY, cascade= 
-		{CascadeType.PERSIST, CascadeType.MERGE
-		,CascadeType.DETACH, CascadeType.REFRESH})
+	@ManyToMany
 	@JoinTable(name="categories_for_games",
 		joinColumns=@JoinColumn(name="for_games"),
 		inverseJoinColumns=@JoinColumn(name="categories_for"))
 	private List<Category> categories;
 	
 	
-	@OneToMany(mappedBy="game_with_achiev", cascade= 
-		{CascadeType.PERSIST, CascadeType.MERGE
-		,CascadeType.DETACH, CascadeType.REFRESH})
+	@OneToMany(mappedBy="achievGame")
 	private List<Achievment> Achivments;
 	
 	private Game() {
 		
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this) {
+			return true;
+		}
+		return false;
+	}
+
 	public void addCategoryToGames(Category category) {
 		if(categories == null) {
 			categories = new ArrayList<>();

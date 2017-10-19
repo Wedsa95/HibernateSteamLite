@@ -3,6 +3,7 @@ package com.jonas.olsson.connection;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.jonas.olsson.entity.AchievStatus;
 import com.jonas.olsson.entity.Achievment;
 import com.jonas.olsson.entity.Category;
 import com.jonas.olsson.entity.Game;
@@ -21,12 +22,13 @@ public class ConnectionSingelton {
 	}
 
 	private SessionFactory buildSessionFactory() {
-		return new Configuration().configure()
+		return new Configuration().configure("hibernate.cfg.xml")
 				.addAnnotatedClass(User.class)
 				.addAnnotatedClass(Game.class)
 				.addAnnotatedClass(Category.class)
 				.addAnnotatedClass(Library.class)
 				.addAnnotatedClass(Rating.class)
+				.addAnnotatedClass(AchievStatus.class)
 				.addAnnotatedClass(Achievment.class)
 				.buildSessionFactory();
 	}

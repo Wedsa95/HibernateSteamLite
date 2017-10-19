@@ -1,7 +1,6 @@
 package com.jonas.olsson.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,35 +9,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-@Entity
-@Table(name="achievments")
-public class Achievment implements Serializable{
 
-	private static final long serialVersionUID = 8664299405716442198L;
+import org.hibernate.annotations.Type;
+@Entity
+@Table(name="user_have_achiev")
+public class AchievStatus  implements Serializable{
+	//Rätt Annoterad
+	private static final long serialVersionUID = -1127893160374144540L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="achiev_id")
-	private int achievId;
+	@Column(name="user_have_achiev_id")
+	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name="game_with_achiev")
-	private Game achievGame;
+    @JoinColumn(name = "user_have") 
+	private User userState;
 	
-	@Column(name="achiev_name")
-	private String achievName;
+	@ManyToOne
+    @JoinColumn(name = "have_achiev") 
+	private Achievment achievState;
 	
-	@Column(name="achiev_point")
-	private int achievPoint;
+	@Column(name="achiev_unlocked")
+	@Type(type="boolean")
+	private Boolean achievUnlocked;
 	
-	@OneToMany(mappedBy="achievState")
-	private List<AchievStatus> achiveStatuses;
-	
-
-	
-	public Achievment() {
+	public AchievStatus() {
 	}
 
 	@Override
