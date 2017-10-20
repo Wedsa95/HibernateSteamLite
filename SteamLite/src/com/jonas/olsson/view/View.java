@@ -7,22 +7,20 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class View extends Application{
-
+	
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("SteamLibrary.fxml"));
-		primaryStage.setTitle("Steam Lite");
-		/*
-		GridPane pane = new GridPane();
-		primaryStage.setTitle("SteamLite");
-		System.out.println("in start");
-		*/
+		Parent library = FXMLLoader.load(getClass().getResource("Library.fxml"));
+		//Parent root = loader.load();
+	
+		Scene scene = new Scene(library, 1200, 800);
 		
-		Scene scene = new Scene(root, 1200, 800);
-		scene.getStylesheets().add("com//jonas//olsson//view//steamlitestyle.css");
+		primaryStage.setTitle("Steam Lite");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-
+	public static void main(String [] args) {
+		launch(View.class,args);
+	}	
 }

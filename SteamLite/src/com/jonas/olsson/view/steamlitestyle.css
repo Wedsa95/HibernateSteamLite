@@ -1,14 +1,13 @@
 .root{
 	-fx-background-color: #383838;
-	-fx-font-size: 20pt;
 	-fx-font-weight: bold;
 }
 .label{
-	-fx-font-size: 10pt;
+	-fx-font-size: 12pt;
 	-fx-text-fill: #989898;
 }
 .button{
-	-fx-font-size: 10pt;
+	-fx-font-size: 12pt;
 	-fx-padding: 0pt 12pt 0pt 12pt;
 	-fx-background-color: #585858;
 	-fx-text-fill: #989898;
@@ -18,4 +17,26 @@
 }
 .button:pressed{
 	
+}
+.menu-button{
+	-fx-font-size: 24pt;
+	-fx-background-color: #383838;
+}
+.menu-button > .arrow-button {
+    -fx-padding: 0;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-padding: 0;
+}
+.list-view{
+	-fx-background-color: #383838;
+}
+.list-view .list-cell:even {
+-fx-background-color: #383838;
+-fx-text-fill: #989898;
+}
+.list-view .list-cell:odd {
+-fx-background-color: #383838;
+-fx-text-fill: #989898;
 }

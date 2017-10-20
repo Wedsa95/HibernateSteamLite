@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane stylesheets="@steamlitestyle.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jonas.olsson.controller.StoreController">
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuButton mnemonicParsing="false" text="Library">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Sort" />
+                <MenuItem mnemonicParsing="false" text="Sort" />
+              </items>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" text="Store">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Sort" />
+                <MenuItem mnemonicParsing="false" text="Sort" />
+              </items>
+            </MenuButton>
+            <MenuButton mnemonicParsing="false" text="Your Page" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane>
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="gameName" />
+                        <Button mnemonicParsing="false" text="Buy" />
+                        <Label text="raiting" />
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </FlowPane>
+   </center>
+</BorderPane>
