@@ -48,5 +48,45 @@ public class Achievment implements Serializable{
 		}
 		return false;
 	}
+
+	public int getAchievId() {
+		return achievId;
+	}
+
+	public void setAchievId(int achievId) {
+		this.achievId = achievId;
+	}
+
+	public Game getAchievGame() {
+		return achievGame;
+	}
+
+	public void setAchievGame(Game achievGame) {
+		this.achievGame = achievGame;
+	}
+
+	public String getAchievName() {
+		return achievName;
+	}
+
+	public void setAchievName(String achievName) {
+		this.achievName = achievName;
+	}
+
+	public int getAchievPoint() {
+		return achievPoint;
+	}
+
+	public void setAchievPoint(int achievPoint) {
+		this.achievPoint = achievPoint;
+	}
+
+	public List<AchievStatus> getAchiveStatuses() {
+		return achiveStatuses;
+	}
+
+	public void setAchiveStatuses(List<AchievStatus> achiveStatuses) {
+		this.achiveStatuses = achiveStatuses;
+	}
 	
 }

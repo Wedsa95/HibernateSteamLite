@@ -28,7 +28,7 @@ public class Library implements Serializable {
 	
 	@OneToOne
 	@JoinColumn(name="owner")
-	private int libraryOwner;
+	private User libraryOwner;
 	
 	@OneToMany
 	@JoinTable(name="library_have_games",
@@ -55,4 +55,29 @@ public class Library implements Serializable {
 		
 		//game.setBelongTo(this);
 	}
+
+	public int getLibraryId() {
+		return libraryId;
+	}
+
+	public void setLibraryId(int libraryId) {
+		this.libraryId = libraryId;
+	}
+
+	public User getLibraryOwner() {
+		return libraryOwner;
+	}
+
+	public void setLibraryOwner(User libraryOwner) {
+		this.libraryOwner = libraryOwner;
+	}
+
+	public List<Game> getGames() {
+		return games;
+	}
+
+	public void setGames(List<Game> games) {
+		this.games = games;
+	}
+	
 }

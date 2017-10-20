@@ -22,15 +22,15 @@ public class Category implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="category_id")
+	@Column(name="categories_id" )
 	private int categoryId;
 	
-	@Column(name="category_id")
+	@Column(name="categories_name")
 	private String categoryName;
 	
 	@ManyToMany
 	@JoinTable(name="categories_for_games",
-		joinColumns=@JoinColumn(name="categories_for"),
+		joinColumns=@JoinColumn(name="categories_for" ),
 		inverseJoinColumns=@JoinColumn(name="for_games"))
 	private List<Game> theGames;
 	
@@ -51,4 +51,29 @@ public class Category implements Serializable{
 		}
 		theGames.add(game);
 	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public List<Game> getTheGames() {
+		return theGames;
+	}
+
+	public void setTheGames(List<Game> theGames) {
+		this.theGames = theGames;
+	}
+	
 }

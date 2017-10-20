@@ -42,5 +42,37 @@ public class Rating implements Serializable{
 		}
 		return false;
 	}
+
+	public int getRatingId() {
+		return ratingId;
+	}
+
+	public void setRatingId(int ratingId) {
+		this.ratingId = ratingId;
+	}
+
+	public User getRatingCritic() {
+		return ratingCritic;
+	}
+
+	public void setRatingCritic(User ratingCritic) {
+		this.ratingCritic = ratingCritic;
+	}
+
+	public Game getRatingSubject() {
+		return ratingSubject;
+	}
+
+	public void setRatingSubject(Game ratingSubject) {
+		this.ratingSubject = ratingSubject;
+	}
+
+	public byte getRatingValue() {
+		return ratingValue;
+	}
+
+	public void setRatingValue(byte ratingValue) {
+		this.ratingValue = ratingValue;
+	}
 	
 }

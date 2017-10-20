@@ -69,4 +69,61 @@ public class Game implements Serializable {
 		}
 		categories.add(category);
 	}
+
+	public int getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(int gameId) {
+		this.gameId = gameId;
+	}
+
+	public String getGameName() {
+		return gameName;
+	}
+
+	public void setGameName(String gameName) {
+		this.gameName = gameName;
+	}
+
+	public int getGameAppId() {
+		return gameAppId;
+	}
+
+	public void setGameAppId(int gameAppId) {
+		this.gameAppId = gameAppId;
+	}
+
+	public Library getBelongsTo() {
+		return belongsTo;
+	}
+
+	public void setBelongsTo(Library belongsTo) {
+		this.belongsTo = belongsTo;
+	}
+
+	public List<Rating> getRating() {
+		return rating;
+	}
+
+	public void setRating(List<Rating> rating) {
+		this.rating = rating;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public List<Achievment> getAchivments() {
+		return Achivments;
+	}
+
+	public void setAchivments(List<Achievment> achivments) {
+		Achivments = achivments;
+	}
+	
 }

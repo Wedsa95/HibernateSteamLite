@@ -8,7 +8,7 @@ public class StoreController {
 	
 
 	public StoreController() {
-		model = new ConnectionModel();
+		model = new ConnectionModel(1);
 		System.out.println("In Controller");
 		
 	}

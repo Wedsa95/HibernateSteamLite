@@ -45,5 +45,37 @@ public class AchievStatus  implements Serializable{
 		}
 		return false;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUserState() {
+		return userState;
+	}
+
+	public void setUserState(User userState) {
+		this.userState = userState;
+	}
+
+	public Achievment getAchievState() {
+		return achievState;
+	}
+
+	public void setAchievState(Achievment achievState) {
+		this.achievState = achievState;
+	}
+
+	public Boolean getAchievUnlocked() {
+		return achievUnlocked;
+	}
+
+	public void setAchievUnlocked(Boolean achievUnlocked) {
+		this.achievUnlocked = achievUnlocked;
+	}
 	
 }

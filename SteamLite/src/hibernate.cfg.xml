@@ -23,7 +23,7 @@
 		<mapping class="com.jonas.olsson.entity.Library"/>
 		<mapping class="com.jonas.olsson.entity.Game"/>
 		<mapping class="com.jonas.olsson.entity.Category"/>
-		<mapping class="com.jonas.olsson.entity.AchievState"/>
+		<mapping class="com.jonas.olsson.entity.AchievStatus"/>
 		<mapping class="com.jonas.olsson.entity.Achievment"/>
 		
 	</session-factory>
