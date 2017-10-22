@@ -11,16 +11,21 @@ import com.jonas.olsson.entity.User;
 public class ConnectionModel {
 
 	private int curentUser;
+	
 	private SessionFactory sessionFactory;
 	private Session session;
+	private UserDao userDao;
+	
+	private User user;
+
 			
 	public ConnectionModel(int curentUser) {
 		this.curentUser = curentUser;
 		sessionFactory = ConnectionSingelton.getInstance().getSessionFactory();
 	}
 	
-	public User getUserInformation() {
-		return session.get(User.class, curentUser);
+	public void readInUserInformation() {
+		user = userDao.readUserById(curentUser);
 	}
 	
 	public void openSessionFlow() {
@@ -30,5 +35,20 @@ public class ConnectionModel {
 	public void closeSessionFlow() {
 		this.session.getTransaction().commit();
 		this.session.close();
+	}
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getCurentUser() {
+		return curentUser;
+	}
+
+	public void setCurentUser(int curentUser) {
+		this.curentUser = curentUser;
 	}
 }

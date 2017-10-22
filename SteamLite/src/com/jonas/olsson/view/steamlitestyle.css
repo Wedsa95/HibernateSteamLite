@@ -25,18 +25,26 @@
 .menu-button > .arrow-button {
     -fx-padding: 0;
 }
-
 .menu-button > .arrow-button > .arrow {
     -fx-padding: 0;
 }
+.menu-button:hover{
+	-fx-text-fill: #126573;
+}
 .list-view{
+	-fx-border-radius: 1pt;
+	-fx-border-width: 2pt, 2pt, 2pt, 2pt;
+	-fx-border-color: black; 
 	-fx-background-color: #383838;
 }
 .list-view .list-cell:even {
--fx-background-color: #383838;
--fx-text-fill: #989898;
+	-fx-background-color: #383838;
+	-fx-text-fill: #989898;
 }
 .list-view .list-cell:odd {
--fx-background-color: #383838;
--fx-text-fill: #989898;
+	-fx-background-color: #383838;
+	-fx-text-fill: #989898;
+}
+.list-view .list-cell:hover{
+	-fx-text-fill: #126573;
 }

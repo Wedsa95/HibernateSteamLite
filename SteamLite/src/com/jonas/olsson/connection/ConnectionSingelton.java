@@ -43,5 +43,9 @@ public class ConnectionSingelton {
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
+	
+	public void closeConnection() {
+		sessionFactory.close();
+	}
 
 }

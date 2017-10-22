@@ -106,5 +106,10 @@ public class User implements Serializable {
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
+
+	@Override
+	public String toString() {
+		return userName;
+	}
 	
 }

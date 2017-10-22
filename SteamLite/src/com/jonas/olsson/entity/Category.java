@@ -75,5 +75,10 @@ public class Category implements Serializable{
 	public void setTheGames(List<Game> theGames) {
 		this.theGames = theGames;
 	}
+
+	@Override
+	public String toString() {
+		return categoryName;
+	} 
 	
 }

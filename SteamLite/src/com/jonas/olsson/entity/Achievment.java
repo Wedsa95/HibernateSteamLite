@@ -88,5 +88,10 @@ public class Achievment implements Serializable{
 	public void setAchiveStatuses(List<AchievStatus> achiveStatuses) {
 		this.achiveStatuses = achiveStatuses;
 	}
+
+	@Override
+	public String toString() {
+		return "Achievment [achievName=" + achievName + "]";
+	}
 	
 }

@@ -125,5 +125,10 @@ public class Game implements Serializable {
 	public void setAchivments(List<Achievment> achivments) {
 		Achivments = achivments;
 	}
+
+	@Override
+	public String toString() {
+		return gameName;
+	}
 	
 }

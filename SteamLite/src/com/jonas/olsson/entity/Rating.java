@@ -74,5 +74,10 @@ public class Rating implements Serializable{
 	public void setRatingValue(byte ratingValue) {
 		this.ratingValue = ratingValue;
 	}
+
+	@Override
+	public String toString() {
+		return ratingValue+"";
+	}
 	
 }

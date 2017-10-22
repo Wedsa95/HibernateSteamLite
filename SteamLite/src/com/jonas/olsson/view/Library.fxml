@@ -19,16 +19,16 @@
    <center>
       <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <MenuButton mnemonicParsing="false" text="SetRating" GridPane.columnIndex="1">
+            <MenuButton fx:id="ratingButton" mnemonicParsing="false" text="SetRating:" GridPane.columnIndex="1">
               <items>
                 <MenuItem mnemonicParsing="false" text="1" />
                 <MenuItem mnemonicParsing="false" text="2" />
@@ -36,32 +36,22 @@
                   <MenuItem mnemonicParsing="false" text="4" />
               </items>
             </MenuButton>
-            <Label text="Game Name" />
-            <Button mnemonicParsing="false" text="Play" GridPane.rowIndex="1" />
-            <MenuButton mnemonicParsing="false" text="Categories" GridPane.columnIndex="1" GridPane.rowIndex="1">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </MenuButton>
+            <Label fx:id="gameNameLabel" text="Game Name" />
+            <Button fx:id="playButton" mnemonicParsing="false" text="Play" GridPane.rowIndex="1" />
+            <MenuButton fx:id="categoryButton" mnemonicParsing="false" text="Categories" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="0.0" prefWidth="448.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuButton mnemonicParsing="false" text="Library">
+            <MenuButton mnemonicParsing="false" onMouseEntered="#showOptions" onMouseExited="#closeOptions" text="Library">
               <items>
                 <MenuItem mnemonicParsing="false" text="Sort" />
                 <MenuItem mnemonicParsing="false" text="Sort" />
               </items>
             </MenuButton>
-            <MenuButton mnemonicParsing="false" text="Store">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Sort" />
-                <MenuItem mnemonicParsing="false" text="Sort" />
-              </items>
-            </MenuButton>
+            <MenuButton mnemonicParsing="false" onMouseEntered="#showOptions" onMouseExited="#closeOptions" text="Store" />
             <MenuButton mnemonicParsing="false" text="Your Page" />
          </children>
       </HBox>
