@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane stylesheets="@steamlitestyle.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jonas.olsson.controller.LibraryController">
+<BorderPane stylesheets="@steamlitestyle.css" xmlns="http://javafx.com/javafx/8.0.141" 
+	xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jonas.olsson.controller.LibraryController">
 		<left>
 			<ListView fx:id="gameListView" editable="true">
 			</ListView>

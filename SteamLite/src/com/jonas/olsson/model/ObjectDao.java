@@ -8,18 +8,14 @@ import org.hibernate.SessionFactory;
 import com.jonas.olsson.connection.ConnectionSingelton;
 import com.jonas.olsson.entity.User;
 
-public class UserDao {
+public class ObjectDao {
 	
 	private SessionFactory sessionFactory = 
 			ConnectionSingelton.getInstance().getSessionFactory();
 	private Session session;
 	
-	public void createUser(User user) {
-		openSessionFlow();
-		session.save(user);
-		closeSessionFlow();
-	}
-	public List<?> readAllUser() {
+	
+	public List<?> readAllFromObject() {
 		openSessionFlow();
 		List<?> users = session.createQuery("from users").getResultList();	
 		closeSessionFlow();
@@ -28,25 +24,24 @@ public class UserDao {
 	public User readUserById(int id) {
 		openSessionFlow();
 		User user = session.get(User.class, id);
-		System.out.println(user);
-		user.getAchievStatuses();
-		user.getLibrary();
-		user.getRatings();
-		user.getLibrary().getGames();
-		user.getLibrary().getGames().iterator().forEachRemaining(e -> e.getAchivments());
-		user.getLibrary().getGames().iterator().forEachRemaining(e -> e.getCategories());
-		user.getLibrary().getGames().iterator().forEachRemaining(e -> e.getRating());
+		System.out.println(user.getUserEmail());
 		closeSessionFlow();
 		return user;
 	}
-	public void updateUser(User user) {
+	
+	public void createObject(Object ob) {
 		openSessionFlow();
-		session.update(user);
+		session.save(ob);
 		closeSessionFlow();
 	}
-	public void deleteUser(User user) {
+	public void updateObject(Object ob) {
 		openSessionFlow();
-		session.delete(user);
+		session.update(ob);
+		closeSessionFlow();
+	}
+	public void deleteObject(Object ob) {
+		openSessionFlow();
+		session.delete(ob);
 		closeSessionFlow();
 	}
 	

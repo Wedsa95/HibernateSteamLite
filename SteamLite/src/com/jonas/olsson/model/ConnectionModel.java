@@ -14,7 +14,7 @@ public class ConnectionModel {
 	
 	private SessionFactory sessionFactory;
 	private Session session;
-	private UserDao userDao;
+	private ObjectDao userDao;
 	
 	private User user;
 
@@ -23,10 +23,7 @@ public class ConnectionModel {
 		this.curentUser = curentUser;
 		sessionFactory = ConnectionSingelton.getInstance().getSessionFactory();
 	}
-	
-	public void readInUserInformation() {
-		user = userDao.readUserById(curentUser);
-	}
+
 	
 	public void openSessionFlow() {
 		this.session = sessionFactory.openSession();

@@ -1,10 +1,5 @@
 package com.jonas.olsson.controller;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import com.jonas.olsson.entity.Game;
 import com.jonas.olsson.model.ConnectionModel;
 
@@ -46,7 +41,6 @@ public class LibraryController {
 	public void initialize() {
 		
 		System.out.println("In Initalize");
-		model.readInUserInformation();
 		startGameListView();
 		
 		
@@ -55,13 +49,13 @@ public class LibraryController {
 	
 	private void startGameListView() {
 		
-		gameListView.getItems().setAll(model.getUser().getLibrary().getGames());
+		//gameListView.getItems().setAll(model.getUser().getLibrary().getGames());
 		gameListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 		gameListView.getSelectionModel().selectFirst();	
 		
 	
-		gameNameLabel.setText(model.getUser().getLibrary().getGames()
-				.get(gameListView.getSelectionModel().getSelectedIndex()).getGameName());
+		//gameNameLabel.setText(model.getUser().getLibrary().getGames()
+		//		.get(gameListView.getSelectionModel().getSelectedIndex()).getGameName());
 		
 		ratingButton.setText("rating");
 		
@@ -71,7 +65,7 @@ public class LibraryController {
 				if(newValue != null) {
 					int game = gameListView.getSelectionModel().getSelectedIndex();
 					
-					gameNameLabel.setText(model.getUser().getLibrary().getGames().get(game).getGameName());
+					//gameNameLabel.setText(model.getUser().getLibrary().getGames().get(game).getGameName());
 					//ratingButton.setText(model.getUser().getLibrary().getGames().get(game).getGameName());
 					
 				}
