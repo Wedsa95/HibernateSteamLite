@@ -21,11 +21,20 @@ public class ObjectDao {
 		closeSessionFlow();
 		return users;
 	}
+	
 	public User readUserById(int id) {
-		openSessionFlow();
-		User user = session.get(User.class, id);
-		System.out.println(user.getUserEmail());
-		closeSessionFlow();
+		User user = null;
+		try {
+		
+			openSessionFlow();
+			System.out.println("in readUserBy");
+			user = session.get(User.class, id);
+			System.out.println(user.getUserEmail());
+			
+		}finally {
+			closeSessionFlow();
+		}
+		
 		return user;
 	}
 	

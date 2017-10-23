@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane stylesheets="@steamlitestyle.css" xmlns="http://javafx.com/javafx/8.0.141" 
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jonas.olsson.controller.LibraryController">
+<BorderPane stylesheets="@steamlitestyle.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jonas.olsson.controller.LibraryController">
 		<left>
 			<ListView fx:id="gameListView" editable="true">
 			</ListView>
@@ -46,14 +45,9 @@
    <top>
       <HBox prefHeight="0.0" prefWidth="448.0" BorderPane.alignment="CENTER">
          <children>
-            <MenuButton mnemonicParsing="false" onMouseEntered="#showOptions" onMouseExited="#closeOptions" text="Library">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Sort" />
-                <MenuItem mnemonicParsing="false" text="Sort" />
-              </items>
-            </MenuButton>
-            <MenuButton mnemonicParsing="false" onMouseEntered="#showOptions" onMouseExited="#closeOptions" text="Store" />
-            <MenuButton mnemonicParsing="false" text="Your Page" />
+            <Button fx:id="libraryButton" mnemonicParsing="false" onAction="#handleButtonAction" text="Library" />
+            <Button fx:id="storeButton" mnemonicParsing="false" onAction="#handleButtonAction" text="Store" />
+            <Button fx:id="yourPageButton" mnemonicParsing="false" onAction="#handleButtonAction" text="Your Page" />
          </children>
       </HBox>
    </top>
