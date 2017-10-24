@@ -38,22 +38,12 @@ public class Library implements Serializable {
 	
 	public Library() {
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == this) {
-			return true;
-		}
-		return false;
-	}
 
 	public void addGameToLibrary(Game game) {
 		if(games == null) {
 			games = new ArrayList<>();
 		}
 		games.add(game);
-		
-		//game.setBelongTo(this);
 	}
 
 	public int getLibraryId() {

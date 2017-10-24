@@ -1,5 +1,7 @@
 package com.jonas.olsson.model;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -17,51 +19,90 @@ public class ConnectionModel {
 	
 	private SessionFactory sessionFactory;
 	private Session session;
-	//private ObjectDao userDao;
-	
 	private User user;
 
 			
 	public ConnectionModel(int curentUser) {
+		
 		this.curentUser = curentUser;
 		sessionFactory = ConnectionSingelton.getInstance().getSessionFactory();
 		System.out.println("in conection con");
-		readEntireUse();
-		
+		readEntireUser();
+		/*
+		userDao = new ObjectDao();
+		User userOb = new User();
+		userOb.setUserName("FapQueen");
+		userOb.setUserPassword("fap");
+		userOb.setUserEmail("Queen@Mail.com");
+		userDao.createObject(userOb);
+		*/
 	}
-	public void readEntireUse() {
+	public void readEntireUser() {
 		openSessionFlow();
 		
 			user = session.get(User.class, curentUser);
 			user.getAchievStatuses();
 			user.getLibrary();
-			user.getLibrary().getGames();
 			user.getRatings();
 			user.getLibrary().getGames().iterator().forEachRemaining(e -> e.getAchivments());
 			user.getLibrary().getGames().iterator().forEachRemaining(e -> e.getRating());
+			user.getLibrary().getGames().iterator().forEachRemaining(e -> e.getCategories());
 			user.getLibrary().getGames().iterator().forEachRemaining(e -> e.getCategories());
 			
 		closeSessionFlow();
 	}
 	
 	public Rating getUserRatingOfGame(Game game,User user) {
-		Rating rating = null;
-		
+		Object rating = null;
+		readEntireUser();
 		openSessionFlow();
 		
 			Query<?> query = session.createQuery("from Rating E "
 					+ "where E.ratingCritic = :userId and  E.ratingSubject = :gameId");
-			query.setParameter("userId", user.getUserId());
-			query.setParameter("gameId", game.getGameId());
-			
-			rating = (Rating) query.getSingleResult();
-			if (rating.equals(null)) {
-				System.out.println("null");
+			query.setParameter("userId", user);
+			query.setParameter("gameId", game);
+		
+			try {
+				rating = query.getSingleResult();
+			}catch(Exception e){
+				e.printStackTrace();
 			}
+			if (rating.equals(null)) {
+				Rating dummyRating = new Rating();
+				dummyRating.setRatingValue((byte) 0); 
+				rating = dummyRating;
+				System.out.println("0000");
+			}
+			
 		closeSessionFlow();
-		return rating;
+		return (Rating) rating;
 	}
-
+	public void updateUserInfo(String name, String email, String password) {
+		openSessionFlow();
+		
+		User user = session.get(User.class, curentUser);
+		
+		user.setUserName(name);
+		user.setUserEmail(email);
+		user.setUserPassword(password);
+		
+		session.update(user);
+		
+		closeSessionFlow();
+		
+	}
+	public List<Game> getAllGames(){
+		openSessionFlow();
+			List<?> games = session.createQuery("from Game").getResultList();
+		closeSessionFlow();
+		
+		return (List<Game>) games;
+	}
+	public void addNewGameToCurrentUser(Game game) {
+		openSessionFlow();
+			user.getLibrary().addGameToLibrary(game);
+		closeSessionFlow();
+	}
 	
 	public void openSessionFlow() {
 		this.session = sessionFactory.openSession();
@@ -86,4 +127,6 @@ public class ConnectionModel {
 	public void setCurentUser(int curentUser) {
 		this.curentUser = curentUser;
 	}
+	
+	
 }

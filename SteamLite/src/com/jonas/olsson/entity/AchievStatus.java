@@ -38,14 +38,6 @@ public class AchievStatus  implements Serializable{
 	public AchievStatus() {
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == this) {
-			return true;
-		}
-		return false;
-	}
-
 	public int getId() {
 		return id;
 	}

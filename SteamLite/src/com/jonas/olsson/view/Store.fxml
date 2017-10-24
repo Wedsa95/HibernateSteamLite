@@ -8,32 +8,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane stylesheets="@steamlitestyle.css" xmlns="http://javafx.com/javafx/8.0.141" 
-xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jonas.olsson.controller.StoreController">
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" stylesheets="@steamlitestyle.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jonas.olsson.controller.StoreController">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Library" />
-            <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Store" />
-            <Button mnemonicParsing="false" onAction="#handleButtonAction" text="Your Page" />
+            <Button fx:id="libraryButton" mnemonicParsing="false" onAction="#switchSceneButtonAction" text="Library" />
+            <Button fx:id="storeButton" mnemonicParsing="false" onAction="#switchSceneButtonAction" text="Store" />
+            <Button fx:id="yourPageButton" mnemonicParsing="false" onAction="#switchSceneButtonAction" text="Your Page" />
          </children>
       </HBox>
    </top>
    <center>
-      <FlowPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Pane>
-               <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="gameName" />
-                        <Button mnemonicParsing="false" text="Buy" />
-                        <Label text="raiting" />
-                     </children>
-                  </VBox>
-               </children>
-            </Pane>
-         </children>
+      <FlowPane fx:id="flowPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
       </FlowPane>
    </center>
 </BorderPane>

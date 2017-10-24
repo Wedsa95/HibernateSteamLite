@@ -35,20 +35,10 @@ public class Achievment implements Serializable{
 	
 	@OneToMany(mappedBy="achievState")
 	private List<AchievStatus> achiveStatuses;
-	
 
-	
 	public Achievment() {
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == this) {
-			return true;
-		}
-		return false;
-	}
-
+	//HJÄLP METOD 
 	public int getAchievId() {
 		return achievId;
 	}

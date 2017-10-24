@@ -37,14 +37,6 @@ public class Category implements Serializable{
 	public Category() {
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == this) {
-			return true;
-		}
-		return false;
-	}
-
 	public void addGameToCategories(Game game) {
 		if(theGames == null) {
 			theGames = new ArrayList<>();

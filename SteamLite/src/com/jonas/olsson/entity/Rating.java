@@ -35,14 +35,6 @@ public class Rating implements Serializable{
 	public Rating() {
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == this) {
-			return true;
-		}
-		return false;
-	}
-
 	public int getRatingId() {
 		return ratingId;
 	}

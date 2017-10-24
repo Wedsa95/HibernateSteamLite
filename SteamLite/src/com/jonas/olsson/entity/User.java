@@ -42,15 +42,7 @@ public class User implements Serializable {
 	
 	public User() {
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == this) {
-			return true;
-		}
-		return false;
-	}
-
+	//HJÄLP METODER FÖR ATT LÄGGA TILL OCH HÄMTA 
 	public int getUserId() {
 		return userId;
 	}

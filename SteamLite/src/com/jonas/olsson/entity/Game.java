@@ -54,14 +54,6 @@ public class Game implements Serializable {
 	private Game() {
 		
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == this) {
-			return true;
-		}
-		return false;
-	}
 
 	public void addCategoryToGames(Category category) {
 		if(categories == null) {

@@ -14,30 +14,29 @@ public class ObjectDao {
 			ConnectionSingelton.getInstance().getSessionFactory();
 	private Session session;
 	
+	public ObjectDao() {
+	}
 	
 	public List<?> readAllFromObject() {
+		List<?> users = null;
 		openSessionFlow();
-		List<?> users = session.createQuery("from users").getResultList();	
+		users = session.createQuery("from users").getResultList();	
+		
 		closeSessionFlow();
 		return users;
 	}
-	
 	public User readUserById(int id) {
 		User user = null;
 		try {
-		
 			openSessionFlow();
 			System.out.println("in readUserBy");
 			user = session.get(User.class, id);
-			System.out.println(user.getUserEmail());
-			
+			System.out.println(user.getUserEmail());	
 		}finally {
 			closeSessionFlow();
-		}
-		
+		}	
 		return user;
 	}
-	
 	public void createObject(Object ob) {
 		openSessionFlow();
 		session.save(ob);

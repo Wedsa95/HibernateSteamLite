@@ -1,7 +1,5 @@
 package com.jonas.olsson.view;
 
-import java.io.IOException;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +14,7 @@ public class View extends Application{
 		Parent library = FXMLLoader.load(getClass().getResource("Library.fxml"));
 		//Parent root = loader.load();
 	
-		Scene scene = new Scene(library, 1200, 800);
+		Scene scene = new Scene(library, 400, 600);
 		
 		primaryStage.setTitle("Steam Lite");
 		primaryStage.setScene(scene);
@@ -28,6 +26,7 @@ public class View extends Application{
 
 	   Scene scene = new Scene( pane );
 	   primaryStage.setScene(scene);
+	   primaryStage.show();
 	}
 	public static void main(String [] args) {
 		launch(View.class,args);
