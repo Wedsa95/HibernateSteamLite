@@ -11,7 +11,7 @@
 		<property name="use_sql_comments">true</property>
 		<property name="format_sql">true</property>
 						
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/steam_lite</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/steam_skin</property>
 		
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"></property>

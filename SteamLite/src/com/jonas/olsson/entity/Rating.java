@@ -30,7 +30,7 @@ public class Rating implements Serializable{
 	private Game ratingSubject;
 	
 	@Column(name = "rating_value")
-	private byte ratingValue;
+	private int ratingValue;
 	
 	public Rating() {
 	}
@@ -59,11 +59,11 @@ public class Rating implements Serializable{
 		this.ratingSubject = ratingSubject;
 	}
 
-	public byte getRatingValue() {
+	public int getRatingValue() {
 		return ratingValue;
 	}
 
-	public void setRatingValue(byte ratingValue) {
+	public void setRatingValue(int ratingValue) {
 		this.ratingValue = ratingValue;
 	}
 

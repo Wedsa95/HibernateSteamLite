@@ -14,7 +14,7 @@ public class View extends Application{
 		Parent library = FXMLLoader.load(getClass().getResource("Library.fxml"));
 		//Parent root = loader.load();
 	
-		Scene scene = new Scene(library, 400, 600);
+		Scene scene = new Scene(library, 600, 600);
 		
 		primaryStage.setTitle("Steam Lite");
 		primaryStage.setScene(scene);

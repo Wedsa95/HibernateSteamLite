@@ -1,12 +1,7 @@
 package com.jonas.olsson.controller;
 
-import java.awt.Desktop;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
 
-import com.jonas.olsson.entity.Category;
 import com.jonas.olsson.entity.Game;
 import com.jonas.olsson.entity.Rating;
 import com.jonas.olsson.model.ConnectionModel;
@@ -20,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -35,7 +31,7 @@ public class LibraryController {
 	@FXML
 	public ListView<Game> gameListView;
 	@FXML
-	public MenuButton ratingButton;
+	public ChoiceBox<Integer> ratingButton;
 	@FXML
 	public MenuButton categoryButton;
 	@FXML
@@ -57,20 +53,39 @@ public class LibraryController {
 	}
 	public void initialize() {
 		System.out.println("In Initalize");
-		startGameListView();
+		setUpGameListView();
 		setPlayButtonActionListener();
+		setUpRatingButton();
+		setRatingButtonActionListener();
 		
 	}
 	
+	private void setUpRatingButton() {
+		int[] values = model.getRatingValues();
+		
+		for(int i = 0; i < values.length; ++i) {
+			ratingButton.getItems().add(i,values[i]);
+		}
+	}
+	private void setRatingButtonActionListener() {
+		ratingButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				model.saveRatingForGame(ratingButton.getValue(),
+						model.getUser().getLibrary().getGames()
+						.get(gameListView.getSelectionModel().getSelectedIndex()));
+			}
+		});
+	}
 	private void setPlayButtonActionListener() {
 		playButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				playGame(gameListView.getSelectionModel().getSelectedItem());
+				//playGame(gameListView.getSelectionModel().getSelectedItem());
 			}
 		});
 	}
-	private void startGameListView() {
+	private void setUpGameListView() {
 		
 		gameListView.getItems().setAll(model.getUser().getLibrary().getGames());
 		gameListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
@@ -79,7 +94,8 @@ public class LibraryController {
 		gameNameLabel.setText(model.getUser().getLibrary().getGames()
 				.get(gameListView.getSelectionModel().getSelectedIndex()).getGameName());
 		
-		ratingButton.setText("rating");
+		//Rating tempRating = model.getUserRatingOfGame(gameListView.getSelectionModel().getSelectedItem(),model.getUser());
+		//ratingButton.setValue(tempRating.getRatingValue());
 		
 		gameListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Game>() {
 		
@@ -87,7 +103,7 @@ public class LibraryController {
 			public void changed(ObservableValue<? extends Game> observable, Game oldValue, Game newValue) {
 				if(newValue != null) {
 					
-					categoryButton.getItems().clear();
+				//	categoryButton.getItems().clear();
 					//BRYT
 					int gameIndex = gameListView.getSelectionModel().getSelectedIndex();
 					//UT
@@ -95,25 +111,24 @@ public class LibraryController {
 					//BRYT
 					gameNameLabel.setText(model.getUser().getLibrary().getGames().get(gameIndex).getGameName());
 					//UT
-					
+					boolean yes = model.ratingIfExists(gameListView.getSelectionModel().getSelectedItem(), model.getUser());
+					System.out.println(yes+"ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
 					//BRYT
-					Rating rating = model.getUserRatingOfGame(gameListView.getSelectionModel().getSelectedItem(),model.getUser());
+				//	Rating rating = model.getUserRatingOfGame(gameListView.getSelectionModel().getSelectedItem(),model.getUser());
 					
-					ratingButton.setText(rating.getRatingValue()+"");
+				//	ratingButton.setValue(rating.getRatingValue());
 					//UT
-					
+				//	categoryButton.getItems().add(new MenuItem("Cattt"));
+					/*
 					List<Category> cat = model.getUser().getLibrary().getGames().get(gameIndex).getCategories();
 					for(Category category : cat) {
 						System.out.println("GETING cat");
 						categoryButton.getItems().add(new MenuItem(category.getCategoryName()));
 					}
-					
+					*/
 				}
-			
 			}
 		});
-		
-		
 	}
 
 	@FXML
@@ -143,7 +158,7 @@ public class LibraryController {
 	     	stage.setScene(scene);
 	     	stage.show();
 	}
-	
+	/*
 	private void playGame(Game game) {
 		try {
 			Desktop.getDesktop().browse(new URI("steam://runsafe/"+game.getGameAppId()));
@@ -156,5 +171,5 @@ public class LibraryController {
 		}
 		
 	}
-	
+	*/
 }

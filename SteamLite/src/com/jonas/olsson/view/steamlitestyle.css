@@ -16,11 +16,13 @@
 	-fx-text-fill: #383838;
 }
 .button:pressed{
-	
+	-fx-text-fill: #393939;
 }
 .menu-button{
 	-fx-font-size: 24pt;
 	-fx-background-color: #383838;
+	-fx-border-color: #000000;
+	-fx-border-width: 1pt;
 }
 .menu-button > .arrow-button {
     -fx-padding: 0;
@@ -30,6 +32,11 @@
 }
 .menu-button:hover{
 	-fx-text-fill: #126573;
+}
+.choice-box{
+	-fx-background-color: #383838;
+	-fx-border-color: #000000;
+	-fx-border-width: 1pt;
 }
 .list-view{
 	-fx-border-radius: 1pt;

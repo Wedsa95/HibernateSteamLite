@@ -2,9 +2,11 @@ package com.jonas.olsson.model;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 
 import com.jonas.olsson.connection.ConnectionSingelton;
 import com.jonas.olsson.entity.Game;
@@ -20,6 +22,8 @@ public class ConnectionModel {
 	private SessionFactory sessionFactory;
 	private Session session;
 	private User user;
+	
+	final private int[] ratingValues = {1,2,3,4};
 
 			
 	public ConnectionModel(int curentUser) {
@@ -51,32 +55,74 @@ public class ConnectionModel {
 			
 		closeSessionFlow();
 	}
-	
-	public Rating getUserRatingOfGame(Game game,User user) {
-		Object rating = null;
-		readEntireUser();
+	public boolean ratingIfExists(Game game,User user) {
 		openSessionFlow();
 		
-			Query<?> query = session.createQuery("from Rating E "
+			Query query = session.createQuery("from Rating E "
+				+ "where E.ratingCritic = :userId and  E.ratingSubject = :gameId");
+			query.setParameter("userId", user);
+			query.setParameter("gameId", game);
+		closeSessionFlow();
+		return (query != null);
+	}
+	public Rating getUserRatingOfGame(Game game,User user) {
+		Object rating = null;
+		
+		openSessionFlow();
+		
+			Query query = session.createQuery("from Rating E "
 					+ "where E.ratingCritic = :userId and  E.ratingSubject = :gameId");
 			query.setParameter("userId", user);
 			query.setParameter("gameId", game);
 		
 			try {
 				rating = query.getSingleResult();
-			}catch(Exception e){
+			}catch(HibernateException e){
 				e.printStackTrace();
 			}
-			if (rating.equals(null)) {
-				Rating dummyRating = new Rating();
-				dummyRating.setRatingValue((byte) 0); 
-				rating = dummyRating;
-				System.out.println("0000");
-			}
+			
+				if (rating == null) {
+					Rating dummyRating = new Rating();
+					dummyRating.setRatingValue(1); 
+					rating = dummyRating;
+				}
 			
 		closeSessionFlow();
 		return (Rating) rating;
 	}
+	
+	public void saveRatingForGame(Integer value, Game game) {
+		
+		Rating tempRating = getUserRatingOfGame(game,user);
+		
+		if(tempRating.getRatingValue() == 0) {
+			openSessionFlow();
+		
+			Rating rating = tempRating;
+			
+				rating.setRatingCritic(user);
+				rating.setRatingSubject(game);
+				rating.setRatingValue(value);
+				
+				session.update(rating);
+			
+			closeSessionFlow();
+		}else {
+			openSessionFlow();
+			
+			Rating rating = new Rating();
+			
+				rating.setRatingCritic(user);
+				rating.setRatingSubject(game);
+				rating.setRatingValue(value);
+				
+				session.save(rating);
+			
+			closeSessionFlow();
+		}
+		
+	}
+	
 	public void updateUserInfo(String name, String email, String password) {
 		openSessionFlow();
 		
@@ -91,6 +137,7 @@ public class ConnectionModel {
 		closeSessionFlow();
 		
 	}
+	
 	public List<Game> getAllGames(){
 		openSessionFlow();
 			List<?> games = session.createQuery("from Game").getResultList();
@@ -98,12 +145,15 @@ public class ConnectionModel {
 		
 		return (List<Game>) games;
 	}
+	
 	public void addNewGameToCurrentUser(Game game) {
 		openSessionFlow();
+			User user = session.get(User.class, curentUser);
+			
 			user.getLibrary().addGameToLibrary(game);
+			session.save(user);
 		closeSessionFlow();
 	}
-	
 	public void openSessionFlow() {
 		this.session = sessionFactory.openSession();
 		this.session.beginTransaction();	
@@ -127,6 +177,8 @@ public class ConnectionModel {
 	public void setCurentUser(int curentUser) {
 		this.curentUser = curentUser;
 	}
-	
+	public int[] getRatingValues() {
+		return ratingValues;
+	}
 	
 }
