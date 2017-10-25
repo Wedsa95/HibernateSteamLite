@@ -1,8 +1,6 @@
 package com.jonas.olsson.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.jonas.olsson.entity.Game;
@@ -24,8 +22,6 @@ public class StoreController {
 	
 	public ConnectionModel model;
 	
-	ArrayList<VBox> boxes = new ArrayList<VBox>();
-	
 	@FXML
 	public FlowPane flowPane;
 	@FXML
@@ -34,32 +30,57 @@ public class StoreController {
 	public Button libraryButton;
 	@FXML
 	public Button storeButton;
-
-
+	/**
+	 * An constructor that creates a object
+	 * of the {@link ConnectionModel}
+	 * 
+	 * @see	ConnectionModel 
+	 */
 	public StoreController() {
 		model = new ConnectionModel(1);
-		System.out.println("In Controller");
-		
 	}
+	
+	/**
+	 * an method that the main automatically 
+	 * calls for while using the javafx.application
+	 * package 
+	 * 
+	 * @see javafx.fxml
+	 */
 	public void initialize() {
-		System.out.println("In Initalize Store");
 		List<Game> games= model.getAllGames();
+		setupStoreItemPanes(games);
+	}
+	/**
+	 * Creates a number of createItemPane 
+	 * layouts. Then adds the it to the center 
+	 * of the root pane
+	 * 
+	 * @param games	
+	 * @see Store.fxml
+	 */
+	private void setupStoreItemPanes(List<Game> games) {
 		
+		for (Game game: games) {
+			List<VBox> pane1 = (List<VBox>) createItemPane(games.get(game.getGameId()));
+		}
 		VBox pane1 = createItemPane(games.get((int) (Math.random()*11)));
 		VBox pane2 = createItemPane(games.get((int) (Math.random()*11)));
 		VBox pane3 = createItemPane(games.get((int) (Math.random()*11)));
 		VBox pane4 = createItemPane(games.get((int) (Math.random()*11)));
 		VBox pane5 = createItemPane(games.get((int) (Math.random()*11)));
-		boxes.add(pane1);
-		boxes.add(pane2);
-		boxes.add(pane3);
-		boxes.add(pane4);
-		boxes.add(pane5);
 
-		flowPane.getChildren().addAll(boxes);
+		flowPane.getChildren().addAll(pane1 ,pane2 ,pane3 ,pane4 ,pane5);
 	}
+	/**
+	 * This is a action event that switch the {@link Scene}
+	 * 
+	 * @param event	uses it to determine what button was pressed 
+	 * @throws IOException When no fxml file was found
+	 * @see Stage
+	 */
 	@FXML
-	 private void switchSceneButtonAction(ActionEvent event) throws IOException{
+	private void switchSceneButtonAction(ActionEvent event) throws IOException{
 	     Stage stage; 
 	     Parent root;
 	     
@@ -85,12 +106,25 @@ public class StoreController {
 	     	stage.setScene(scene);
 	     	stage.show();
 	}
+	/**
+	 * Takes in a Game entity and it desides some of the 
+	 * look of the layout.
+	 * 
+	 * Returns a VBox layout with a {@link Button} 
+	 * and {@link Label}. Then adds the gameName to the 
+	 * Label and {@link EventHandler} to the Button.
+	 * 
+	 * @param game	The Game entity
+	 * @return VBox	A layout with additional controllers on
+	 * @see VBox javafx.con
+	 */
 	private VBox createItemPane(Game game) {
 		Game gamez = game;
 		VBox pane = new VBox(10);
 		pane.setMinHeight(150);
 		pane.setMinWidth(150);
 		Label gameName = new Label(game.getGameName());
+		gameName.wrapTextProperty();
 		Button buyButton = new Button("Buy");
 		buyButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override

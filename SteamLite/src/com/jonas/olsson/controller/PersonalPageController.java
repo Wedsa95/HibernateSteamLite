@@ -10,9 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -33,21 +35,36 @@ public class PersonalPageController {
 	@FXML
 	public TextField passwordField;
 	@FXML
-	public Button uppdateButton;
+	public Button updateButton;
 
+	/**
+	 * An constructor that creates a object
+	 * of the {@link ConnectionModel}
+	 * 
+	 * @see	ConnectionModel 
+	 */
 	public PersonalPageController() {
-		model = new ConnectionModel(1);
-		
+		model = new ConnectionModel(1);	
+	}
+	
+	/**
+	 * an method that the main automatically 
+	 * calls for while using the javafx.application
+	 * package 
+	 * 
+	 * @see javafx.fxml
+	 */
+	public void initialize() {
+	
+		setupFields();
+		setupUpdateButton();
 		
 	}
-	public void initialize() {
-		System.out.println("In Initalize Personal");
-		//BRYT
-		userNameField.setText(model.getUser().getUserName());
-		emailField.setText(model.getUser().getUserEmail());
-		passwordField.setText(model.getUser().getUserPassword());
-		
-		uppdateButton.setOnAction(new EventHandler<ActionEvent>() {
+	/**
+	 * Sets up the updateButtons {@link EventHandler}.
+	 */
+	private void setupUpdateButton() {
+		updateButton.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
@@ -58,31 +75,40 @@ public class PersonalPageController {
 				model.updateUserInfo(name,email,password);
 			}
 		});
-		//UT
 	}
+	/**
+	 * Sets up the {@link TextField} and {@link PasswordField}
+	 * and adds the current users information from the database.
+	 */
+	private void setupFields() {
+
+		userNameField.setText(model.getUser().getUserName());
+		emailField.setText(model.getUser().getUserEmail());
+		passwordField.setText(model.getUser().getUserPassword());
+	}
+	
+	/**
+	 * This is a action event that switch the {@link Scene}
+	 * 
+	 * @param event	uses it to determine what button was pressed 
+	 * @throws IOException whhen no fxml file was found
+	 * @see Stage
+	 */
 	@FXML
-	 private void switchSceneButtonAction(ActionEvent event) throws IOException{
+	private void switchSceneButtonAction(ActionEvent event) throws IOException{
 	     Stage stage; 
 	     Parent root;
 	     
 	     if(event.getSource() == libraryButton){
-	    	 //get reference to the button's stage         
 	    	 stage=(Stage) libraryButton.getScene().getWindow();
-	    	 //load up OTHER FXML document
 	    	 root = FXMLLoader.load(getClass().getClassLoader().getResource("com/jonas/olsson/view/Library.fxml"));
-	    	 System.out.println(root);
-	    	 
 	      }else if(event.getSource() == storeButton){
 	    	 stage=(Stage) storeButton.getScene().getWindow();
 	    	 root = FXMLLoader.load(getClass().getClassLoader().getResource("com/jonas/olsson/view/Store.fxml"));
-	    	 System.out.println(root);
-	    	 
 	      }else {
 	    	  stage=(Stage) yourPageButton.getScene().getWindow();
 	    	  root = FXMLLoader.load(getClass().getClassLoader().getResource("com/jonas/olsson/view/PersonalPage.fxml"));
-	    	  System.out.println(root);
 	      }
-	     	//create a new scene with root and set the stage
 	     	Scene scene = new Scene(root);
 	     	stage.setScene(scene);
 	     	stage.show();
