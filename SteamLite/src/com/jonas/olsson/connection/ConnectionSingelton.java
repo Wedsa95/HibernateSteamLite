@@ -55,7 +55,7 @@ public class ConnectionSingelton {
 	 */
 	public static ConnectionSingelton getInstance() {
 		if(instance == null){
-			return new ConnectionSingelton();
+			instance = new ConnectionSingelton();
 		}
 		return instance;
 	}

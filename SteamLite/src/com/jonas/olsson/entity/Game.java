@@ -51,7 +51,7 @@ public class Game implements Serializable {
 	@OneToMany(mappedBy="achievGame")
 	private List<Achievment> Achivments;
 	
-	private Game() {
+	public Game() {
 		
 	}
 

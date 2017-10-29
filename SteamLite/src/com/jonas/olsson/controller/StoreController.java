@@ -61,9 +61,7 @@ public class StoreController {
 	 */
 	private void setupStoreItemPanes(List<Game> games) {
 		
-		for (Game game: games) {
-			List<VBox> pane1 = (List<VBox>) createItemPane(games.get(game.getGameId()));
-		}
+		
 		VBox pane1 = createItemPane(games.get((int) (Math.random()*11)));
 		VBox pane2 = createItemPane(games.get((int) (Math.random()*11)));
 		VBox pane3 = createItemPane(games.get((int) (Math.random()*11)));
@@ -85,9 +83,9 @@ public class StoreController {
 	     Parent root;
 	     
 	     if(event.getSource() == libraryButton){
-	    	 //get reference to the button's stage         
+	    	      
 	    	 stage=(Stage) libraryButton.getScene().getWindow();
-	    	 //load up OTHER FXML document
+	    	
 	    	 root = FXMLLoader.load(getClass().getClassLoader().getResource("com/jonas/olsson/view/Library.fxml"));
 	    	 System.out.println(root);
 	    	 
@@ -99,15 +97,15 @@ public class StoreController {
 	      }else {
 	    	  stage=(Stage) yourPageButton.getScene().getWindow();
 	    	  root = FXMLLoader.load(getClass().getClassLoader().getResource("com/jonas/olsson/view/PersonalPage.fxml"));
-	    	  System.out.println(root);
+	   
 	      }
-	     	//create a new scene with root and set the stage
+	    
 	     	Scene scene = new Scene(root);
 	     	stage.setScene(scene);
 	     	stage.show();
 	}
 	/**
-	 * Takes in a Game entity and it desides some of the 
+	 * Takes in a Game entity and it decides some of the 
 	 * look of the layout.
 	 * 
 	 * Returns a VBox layout with a {@link Button} 

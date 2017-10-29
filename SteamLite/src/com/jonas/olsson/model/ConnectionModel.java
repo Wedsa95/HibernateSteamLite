@@ -15,6 +15,7 @@ import org.hibernate.query.Query;
 
 import com.jonas.olsson.connection.ConnectionSingelton;
 import com.jonas.olsson.entity.Game;
+import com.jonas.olsson.entity.Library;
 import com.jonas.olsson.entity.Rating;
 import com.jonas.olsson.entity.User;
 
@@ -211,6 +212,24 @@ public class ConnectionModel {
 			
 			user.getLibrary().addGameToLibrary(game);
 			session.save(user);
+		closeSessionFlow();
+	}
+	
+	public void deleteLibraryOfCurrentUser() {
+		
+		openSessionFlow();	
+			try{
+				Library library = session.get(Library.class, user.getLibrary().getLibraryId());
+				library.getGames().clear();
+			}catch(HibernateException e) {
+				e.printStackTrace();
+			}
+		
+		closeSessionFlow();
+	}
+	public void deleteRatingsOfCurrentUser() {
+		openSessionFlow();
+		
 		closeSessionFlow();
 	}
 	/**

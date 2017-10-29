@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,6 +35,10 @@ public class PersonalPageController {
 	public TextField passwordField;
 	@FXML
 	public Button updateButton;
+	@FXML
+	public Button deleteLibraryButton;
+	@FXML
+	public Button deleteRatingsButton;
 
 	/**
 	 * An constructor that creates a object
@@ -58,7 +61,27 @@ public class PersonalPageController {
 	
 		setupFields();
 		setupUpdateButton();
+		setupDeleteLibraryButton();
+		setupDeleteRatingButton();
 		
+	}
+	private void setupDeleteLibraryButton() {
+		deleteLibraryButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				model.deleteLibraryOfCurrentUser();
+			}
+		});
+	}
+	private void setupDeleteRatingButton() {
+		deleteRatingsButton.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				
+			}
+		});
 	}
 	/**
 	 * Sets up the updateButtons {@link EventHandler}.

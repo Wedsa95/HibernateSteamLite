@@ -9,9 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane minHeight="600" minWidth="600" stylesheets="@steamlitestyle.css" 
-xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" 
-fx:controller="com.jonas.olsson.controller.PersonalPageController">
+<BorderPane minHeight="600" minWidth="600" stylesheets="@steamlitestyle.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.jonas.olsson.controller.PersonalPageController">
    <top>
       <HBox prefHeight="0.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -44,7 +42,7 @@ fx:controller="com.jonas.olsson.controller.PersonalPageController">
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="uppdateButton" minWidth="-Infinity" mnemonicParsing="false" text="Update Details" />
+                  <Button fx:id="updateButton" minWidth="-Infinity" mnemonicParsing="false" text="Update Details" />
                </children>
             </HBox>
          </children>
@@ -53,4 +51,22 @@ fx:controller="com.jonas.olsson.controller.PersonalPageController">
          </BorderPane.margin>
       </VBox>
    </left>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="deleteLibraryButton" mnemonicParsing="false" text="Delete Library" />
+            <Button fx:id="deleteRatingsButton" mnemonicParsing="false" text="Delete Ratings">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+      </VBox>
+   </right>
 </BorderPane>

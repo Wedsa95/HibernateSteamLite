@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.jonas.olsson.entity.Category;
@@ -110,15 +111,16 @@ public class LibraryController {
 	 */
 	private void setupGameListView() {
 
-		gameListView.getItems().setAll(model.getUser().getLibrary().getGames());
-		gameListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		addItemsToListView();
 		gameListView.getSelectionModel().selectFirst();
-
-		gameNameLabel.setText(model.getUser().getLibrary().getGames()
+		gameListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+		if (model.getUser().getLibrary().getGames().isEmpty()) {
+			updateGameNameLabel("");
+		}else {
+			updateGameNameLabel(model.getUser().getLibrary().getGames()
 				.get(gameListView.getSelectionModel().getSelectedIndex()).getGameName());
-
-		updateRatingButton(model.getUser().getLibrary().getGames()
-				.get(gameListView.getSelectionModel().getSelectedIndex()), model.getUser());
+		}
+		
 
 		gameListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Game>() {
 
@@ -135,13 +137,25 @@ public class LibraryController {
 
 					updateRatingButton(model.getUser().getLibrary().getGames().get(gameIndex),model.getUser());
 
-
 					updateCategoyButton(gameIndex);
 
 				}
 			}
 		});
 	}
+
+	private void addItemsToListView() {
+		model.readEntireUser();
+		List<Game> games = model.getUser().getLibrary().getGames();
+		if (!games.isEmpty()) {
+			gameListView.getItems().setAll(games);
+		}else {
+			List<Game> dummyGameList = new ArrayList<>();
+			Game dummyGame = new Game();
+			dummyGameList.add(dummyGame);
+		}
+	}
+	
 	/**
 	 * Takes in a int that decides the current
 	 * games category's to show.
@@ -179,9 +193,7 @@ public class LibraryController {
 	private void updateRatingButton(Game game, User user){
 		boolean ratingExists = model.ratingIfExists
 				(gameListView.getSelectionModel().getSelectedItem(), model.getUser());
-
-		System.out.println(ratingExists+""+ratingExists+""+ratingExists+""+ratingExists);
-
+			ratingButton.setValue(null);
 		if(ratingExists) {
 			Rating rating = model.getUserRatingOfGame(game, user);
 			ratingButton.setValue(rating.getRatingValue());
@@ -202,23 +214,21 @@ public class LibraryController {
 		Parent root;
 
 		if(event.getSource() == libraryButton){
-			//get reference to the button's stage         
+			   
 			stage=(Stage) libraryButton.getScene().getWindow();
-			//load up OTHER FXML document
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("com/jonas/olsson/view/Library.fxml"));
-			System.out.println(root);
-
+			
 		}else if(event.getSource() == storeButton){
 			stage=(Stage) storeButton.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("com/jonas/olsson/view/Store.fxml"));
-			System.out.println(root);
 
 		}else {
+			
 			stage=(Stage) yourPageButton.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getClassLoader().getResource("com/jonas/olsson/view/PersonalPage.fxml"));
-			System.out.println(root);
+			
 		}
-		//create a new scene with root and set the stage
+	
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
